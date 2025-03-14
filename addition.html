@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let num1, num2, correctAnswer, operation;
+        
+    function startQuiz(op) {
+        operation = op;
+        num1 = Math.floor(Math.random() * 10) + 1;
+        num2 = Math.floor(Math.random() * 10) + 1;
+        
+        switch(op) {
+            case 'addition': correctAnswer = num1 + num2; break;
+            case 'subtraction': correctAnswer = num1 - num2; break;
+            case 'multiplication': correctAnswer = num1 * num2; break;
+            case 'division': 
+                num1 = num2 * (Math.floor(Math.random() * 10) + 1);
+                correctAnswer = num1 / num2;
+                break;
+        }
+        
+        document.getElementById('question').innerText = `What is ${num1} ${getSymbol(op)} ${num2}?`;
+        document.getElementById('quiz').classList.remove('hidden');
+    }
+    
+    function getSymbol(op) {
+        return op === 'addition' ? '+' : op === 'subtraction' ? '-' : op === 'multiplication' ? '×' : '÷';
+    }
+    
+    function checkAnswer() {
+        let userAnswer = parseFloat(document.getElementById('answer').value);
+        document.getElementById('feedback').innerText = userAnswer === correctAnswer ? 'Correct!' : 'Wrong! Try again.';
+    }
+</script>
+</body>
+</html>
